@@ -50,7 +50,7 @@ class archivesspace {
   #file { '/usr/local/archivesspace/common/lib/mysql-connector-java-5.1.34.jar':
   file { '/tmp/mysql-connector-java-5.1.34.jar':
     ensure  => file,
-    source  => 'puppet:///modules-local/archivesspaces/mysql-connector-java-5.1.34.jar',
+    source  => 'puppet:///modules/archivesspaces/mysql-connector-java-5.1.34.jar',
     #require => File['/usr/local/archivesspace'],
     owner   => 'root',
     group   => 'root',
