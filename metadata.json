@@ -1,0 +1,14 @@
+{
+  "name": "flannon-archivesspace",
+  "version": "0.1.0",
+  "author": "flannon",
+  "summary": "This module installs archivesspace.",
+  "license": "Apache 2.0",
+  "source": "github.com/flannon/puppet-archivesspace",
+  "project_page": "https://github.com/flannon/puppet-archivesspace",
+  "issues_url": "https://github.com/flannon/puppet-archivesspace/issues",
+  "dependencies": [
+    {"version_requirement":">= 1.0.0","name":"puppetlabs-stdlib"}
+  ]
+}
+
