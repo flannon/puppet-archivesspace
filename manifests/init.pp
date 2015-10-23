@@ -57,7 +57,7 @@ class archivesspace {
 
   file { '/tmp/config.rb':
     ensure  => file,
-    source  => 'puppet:///modules-local/archivesspaces/config.rb',
+    source  => 'puppet:///modules-local/archivesspace/config.rb',
     #require => File['/usr/local/archivesspace'],
     owner   => 'root',
     group   => 'root',
