@@ -82,17 +82,17 @@ class archivesspace {
     mode    => '0644',
   }
 
-  #package { 'archivesspace-1.4.1-1.noarch':
-  #  ensure          => present,
-  #  provider        => 'rpm',
-  #  install_options => ['Uvh'],
-  #  source          => '/tmp/archivesspace-1.4.1-1.noarch.rpm',
-  #  require         => File['/tmp/archivesspace-1.4.1-1.noarch.rpm'],
-  #}
+  package { 'archivesspace-1.4.1-1.noarch':
+    ensure          => present,
+    provider        => 'rpm',
+    install_options => ['Uvh'],
+    source          => '/tmp/archivesspace-1.4.1-1.noarch.rpm',
+    require         => File['/tmp/archivesspace-1.4.1-1.noarch.rpm'],
+  }
 
-  #service { 'archivesspace':
-  #  enable => true,
-  #}
+  service { 'archivesspace':
+    enable => true,
+  }
 
 
 }
