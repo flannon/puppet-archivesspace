@@ -37,25 +37,14 @@
 #
 class archivesspace {
 
-
- #file { '/etc/puppet/hieradata/common.temp':
+  #file { '/usr/local/archivesspace/common/lib/mysql-connector-java-5.1.34.jar':
   #  ensure  => file,
-  #  source  => 'puppet:///modules/housekeeping/common.yaml',
-  #  require => File['/etc/puppet/hieradata'],
+  #  source  => 'puppet:///modules-local/archivesspaces/mysql-connector-java-5.1.34.jar',
+  #  #require => File['/usr/local/archivesspace'],
   #  owner   => 'root',
   #  group   => 'root',
-  #  mode    => '0600',
+  #  mode    => '0644',
   #}
-
-  #file { '/usr/local/archivesspace/common/lib/mysql-connector-java-5.1.34.jar':
-  file { '/tmp/mysql-connector-java-5.1.34.jar':
-    ensure  => file,
-    source  => 'puppet:///modules/archivesspaces/mysql-connector-java-5.1.34.jar',
-    #require => File['/usr/local/archivesspace'],
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
-  }
 
   #file { '/usr/local/archivesspace/common/config/configconfig-defaults.rb':
   #  ensure  => file,
@@ -66,12 +55,39 @@ class archivesspace {
   #  mode    => '0644',
   #}
 
+  file { '/tmp/config.rb':
+    ensure  => file,
+    source  => 'puppet:///modules-local/archivesspaces/config.rb',
+    #require => File['/usr/local/archivesspace'],
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+  }
+
+  # Link to the startup script
   #file { '/usr/local/archivesspace/launcher/archivesspace.sh':
   #file { '/etc/init.d/archivesspace':
   #  ensure  => link,
   #  #require => File['/usr/local/archivesspace/launcher/archivespace.sh'],
   #  #target  => '/etc/init.d/archivesspace',
   #  target  => '/usr/local/archivesspace/launcher/archivesspace.sh',
+  #}
+
+  #file { '/tmp/archivesspace-1.4.1-1.noarch.rpm':
+  #  ensure  => file,
+  #  #source => 'puppet:///modules-local/archivesspaces/mysql-connector-java-5.1.34.jar',
+  #  source  => 'puppet:///modules-local/archivesspace/archivesspace-1.4.1-1.noarch.rpm',
+  #  owner   => 'root',
+  #  group   => 'root',
+  #  mode    => '0644',
+  #}
+
+  #package { 'archivesspace-1.4.1-1.noarch':
+  #  ensure          => present,
+  #  provider        => 'rpm',
+  #  install_options => ['Uvh'],
+  #  source          => '/tmp/archivesspace-1.4.1-1.noarch.rpm',
+  #  require         => File['/tmp/archivesspace-1.4.1-1.noarch.rpm'],
   #}
 
   #service { 'archivesspace':
