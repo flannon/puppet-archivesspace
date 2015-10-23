@@ -55,15 +55,6 @@ class archivesspace {
   #  mode    => '0644',
   #}
 
-  file { '/tmp/config.rb':
-    ensure  => file,
-    source  => 'puppet:///modules/archivesspace/config.rb',
-    #require => File['/usr/local/archivesspace'],
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
-  }
-
   # Link to the startup script
   #file { '/usr/local/archivesspace/launcher/archivesspace.sh':
   #file { '/etc/init.d/archivesspace':
@@ -73,14 +64,23 @@ class archivesspace {
   #  target  => '/usr/local/archivesspace/launcher/archivesspace.sh',
   #}
 
-  #file { '/tmp/archivesspace-1.4.1-1.noarch.rpm':
+  #file { '/tmp/config.rb':
   #  ensure  => file,
-  #  #source => 'puppet:///modules-local/archivesspaces/mysql-connector-java-5.1.34.jar',
-  #  source  => 'puppet:///modules-local/archivesspace/archivesspace-1.4.1-1.noarch.rpm',
+  #  source  => 'puppet:///modules/archivesspace/config.rb',
+  #  #require => File['/usr/local/archivesspace'],
   #  owner   => 'root',
   #  group   => 'root',
   #  mode    => '0644',
   #}
+
+  file { '/tmp/archivesspace-1.4.1-1.noarch.rpm':
+    ensure  => file,
+    #source => 'puppet:///modules-local/archivesspaces/mysql-connector-java-5.1.34.jar',
+    source  => 'puppet:///modules-local/archivesspace/archivesspace-1.4.1-1.noarch.rpm',
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+  }
 
   #package { 'archivesspace-1.4.1-1.noarch':
   #  ensure          => present,
