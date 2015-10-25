@@ -33,7 +33,6 @@
 #AppConfig[:allow_other_unmapped] = false
 #
 #AppConfig[:db_url] = proc { AppConfig.demo_db_url }
-AppConfig[:db_url] = "jdbc:mysql://localhost:3306/asdb?user=as&password=vagrant&    useUnicode=true&characterEncoding=UTF-8"
 #AppConfig[:db_url_redacted] = proc { AppConfig[:db_url].gsub(/(user|password)=(.*?)&/, '\1=[REDACTED]&') }
 #AppConfig[:db_max_connections] = proc { 20 + (AppConfig[:indexer_thread_count] * 2) }
 #
@@ -72,7 +71,7 @@ AppConfig[:indexer_url] = "http://localhost:8091"
 AppConfig[:public_url] = "http://localhost:8081"
 #AppConfig[:public_prefix] = proc { "#{URI(AppConfig[:public_url]).path}/".gsub(%r{/+$}, "/") }
 #AppConfig[:public_proxy_prefix] = proc { "#{URI(AppConfig[:public_proxy_url]).path}/".gsub(%r{/+$}, "/") }
-#AppConfig[:docs_url] = "http://localhost:8888"
+AppConfig[:docs_url] = "http://localhost:8888"
 #
 ## Setting any of the four keys below to false will prevent the associated
 ## applications from starting. Temporarily disabling the frontend and public
