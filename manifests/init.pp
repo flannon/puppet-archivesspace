@@ -37,14 +37,14 @@
 #
 class archivesspace {
 
-  #file { '/usr/local/archivesspace/lib/mysql-connector-java-5.1.34.jar':
-  #  ensure  => file,
-  #  source  => 'puppet:///modules-local/archivesspaces/mysql-connector-java-5.1.34.jar',
-  #  #require => File['/usr/local/archivesspace'],
-  #  owner   => 'root',
-  #  group   => 'root',
-  #  mode    => '0644',
-  #}
+  file { '/usr/local/archivesspace/lib/mysql-connector-java-5.1.34.jar':
+    ensure  => file,
+    source  => 'puppet:///modules-local/archivesspaces/mysql-connector-java-5.1.34.jar',
+    #require => File['/usr/local/archivesspace'],
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+  }
 
   file { '/usr/local/archivesspace/config/config.rb':
     ensure   => file,
