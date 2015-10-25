@@ -37,7 +37,7 @@
 #
 class archivesspace {
 
-  #file { '/usr/local/archivesspace/common/lib/mysql-connector-java-5.1.34.jar':
+  #file { '/usr/local/archivesspace/lib/mysql-connector-java-5.1.34.jar':
   #  ensure  => file,
   #  source  => 'puppet:///modules-local/archivesspaces/mysql-connector-java-5.1.34.jar',
   #  #require => File['/usr/local/archivesspace'],
@@ -46,34 +46,26 @@ class archivesspace {
   #  mode    => '0644',
   #}
 
-  #file { '/usr/local/archivesspace/common/config/configconfig-defaults.rb':
-  #  ensure  => file,
-  #  source  => 'puppet:///modules-local/archivesspaces/config-defaults.rb',
-  #  #require => File['/usr/local/archivesspace'],
-  #  owner   => 'root',
-  #  group   => 'root',
-  #  mode    => '0644',
-  #}
-
-  file { '/tmp/config.rb':
-    ensure  => file,
-    source  => 'puppet:///modules-local/archivesspaces/config.rb',
+  file { '/usr/local/archivesspace/config/config.rb':
+    ensure   => file,
+    source   => 'puppet:///modules/archivesspace/config.rb',
     #require => File['/usr/local/archivesspace'],
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
+    owner    => 'root',
+    group    => 'root',
+    mode     => '0644',
+    #require  => Class['puppi::netinstall']a
+    # THIS has to run after puppi::netinstall
   }
 
-  # Link to the startup script
-  #file { '/usr/local/archivesspace/launcher/archivesspace.sh':
-  #file { '/etc/init.d/archivesspace':
-  #  ensure  => link,
-  #  #require => File['/usr/local/archivesspace/launcher/archivespace.sh'],
-  #  #target  => '/etc/init.d/archivesspace',
-  #  target  => '/usr/local/archivesspace/launcher/archivesspace.sh',
-  #}
 
-  #file { '/tmp/archivesspace-1.4.1-1.noarch.rpm':
+  # Link to the startup script
+  file { '/etc/init.d/archivesspace':
+    ensure  => link,
+    #require => File['/usr/local/archivesspace/launcher/archivespace.sh'],
+    target  => '/usr/local/archivesspace/archivesspace.sh',
+  }
+
+  #file { '/tmp/.4.1-1.noarch.rpm':
   #  ensure  => file,
   #  #source => 'puppet:///modules-local/archivesspaces/mysql-connector-java-5.1.34.jar',
   #  source  => 'puppet:///modules-local/archivesspace/archivesspace-1.4.1-1.noarch.rpm',
