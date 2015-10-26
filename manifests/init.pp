@@ -60,15 +60,15 @@ class archivesspace {
     target  => '/usr/local/archivesspace/archivesspace.sh',
   }
 
-  exec { 'load_db_tables':
-    command     => '/usr/local/archivesspace/scripts/setup-database.sh',
-    #refreshonly => true,
-  }
+  #exec { 'load_db_tables':
+  #  command     => '/usr/local/archivesspace/scripts/setup-database.sh',
+  #  #refreshonly => true,
+  #}
 
-  service { 'archivesspace':
-    enable => true,
-    ensure => 'running',
-  }
+  #service { 'archivesspace':
+  #  enable => true,
+  #  ensure => 'running',
+  #}
 
 
 }
