@@ -62,7 +62,7 @@ class archivesspace {
 
   exec { 'load_db_tables':
     command     => '/usr/local/archivesspace/scripts/setup-database.sh',
-    refreshonly => true,
+    #refreshonly => true,
   }
 
   service { 'archivesspace':
