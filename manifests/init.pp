@@ -54,15 +54,20 @@ class archivesspace {
     mode     => '0644',
   }
 
-
   # Link to the startup script
   file { '/etc/init.d/archivesspace':
     ensure  => link,
     target  => '/usr/local/archivesspace/archivesspace.sh',
   }
 
+  exec { 'load_db_tables':
+    command     => '/usr/local/archivesspace/scripts/setup-database.sh'
+    refreshonly => true,
+  }
+
   service { 'archivesspace':
     enable => true,
+    ensure => 'running',
   }
 
 
