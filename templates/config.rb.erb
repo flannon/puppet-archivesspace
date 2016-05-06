@@ -1,3 +1,5 @@
+# Mananged by puppedet
+#
 # Configuration defaults are shown below
 
 #AppConfig[:default_admin_password] = "admin"
@@ -33,7 +35,7 @@
 #AppConfig[:allow_other_unmapped] = false
 #
 #AppConfig[:db_url] = proc { AppConfig.demo_db_url }
-AppConfig[:db_url] = "jdbc:mysql://localhost:3306/asdb?user=asdb&password=letmein&useUnicode=true&characterEncoding=UTF-8"
+AppConfig[:db_url] = "jdbc:mysql://localhost:3306/<%= @db_name %>?user=<%= @db_user %>&password=<%= @db_passwd %>&useUnicode=true&characterEncoding=UTF-8"
 #AppConfig[:db_url_redacted] = proc { AppConfig[:db_url].gsub(/(user|password)=(.*?)&/, '\1=[REDACTED]&') }
 #AppConfig[:db_max_connections] = proc { 20 + (AppConfig[:indexer_thread_count] * 2) }
 #

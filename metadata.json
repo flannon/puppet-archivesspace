@@ -1,6 +1,6 @@
 {
   "name": "flannon-archivesspace",
-  "version": "0.1.0",
+  "version": "0.1.3",
   "author": "flannon",
   "summary": "This module installs archivesspace.",
   "license": "Apache 2.0",
@@ -8,7 +8,9 @@
   "project_page": "https://github.com/flannon/puppet-archivesspace",
   "issues_url": "https://github.com/flannon/puppet-archivesspace/issues",
   "dependencies": [
-    {"version_requirement":">= 1.0.0","name":"puppetlabs-stdlib"}
+    {"version_requirement":">= 1.0.0","name":"puppetlabs-stdlib"},
+    {"version_requirement":">= 1.3.1","name":"puppetlabs-vcsrepo"},
+    {"version_requirement":">= 3.7.0","name":"puppetlabs-mysql"}
   ]
 }
 

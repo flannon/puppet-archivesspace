@@ -1,4 +1,4 @@
-# == Class: archivesspace
+# == Class: archivesspace::install
 #
 # Full description of class archivesspace here.
 #
@@ -10,7 +10,7 @@
 #
 # Copyright 2015 Your name here, unless otherwise noted.
 #
-class archivesspace (
+class archivesspace::install (
   $db_name    = hiera('archivesspace::db_name',
       $archivesspace::params::db_name),
   $db_passwd   = hiera('archivesspace::db_passwd',
@@ -22,11 +22,7 @@ class archivesspace (
         $archivesspace::params::user),
   $version = hiera('archivesspace::version',
         $archivesspace::params::version),
-  $plugin_ensure = $archivesspace::params::plugin_ensure,
-  $ensure       = $archivesspace::params::ensure,
 ) inherits archivesspace::params {
-
-  ensure_resource('package', 'git', {'ensure' => 'present'})
 
   package { 'archivesspace' :
     ensure => $version,

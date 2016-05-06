@@ -33,7 +33,6 @@
 #AppConfig[:allow_other_unmapped] = false
 #
 #AppConfig[:db_url] = proc { AppConfig.demo_db_url }
-AppConfig[:db_url] = "jdbc:mysql://localhost:3306/asdb?user=asdb&password=letmein&useUnicode=true&characterEncoding=UTF-8"
 #AppConfig[:db_url_redacted] = proc { AppConfig[:db_url].gsub(/(user|password)=(.*?)&/, '\1=[REDACTED]&') }
 #AppConfig[:db_max_connections] = proc { 20 + (AppConfig[:indexer_thread_count] * 2) }
 #
@@ -54,8 +53,8 @@ AppConfig[:db_url] = "jdbc:mysql://localhost:3306/asdb?user=asdb&password=letmei
 #AppConfig[:solr_backup_schedule] = "0 * * * *"
 #AppConfig[:solr_backup_number_to_keep] = 1
 #
-AppConfig[:backend_url] = "http://localhost:8089"
-AppConfig[:frontend_url] = "http://localhost:8080"
+#AppConfig[:backend_url] = "http://localhost:8089"
+#AppConfig[:frontend_url] = "http://localhost:8080"
 #
 ## Proxy URLs
 ## If you are serving user-facing applications via proxy
@@ -67,9 +66,9 @@ AppConfig[:frontend_url] = "http://localhost:8080"
 ## Don't override _prefix or _proxy_prefix unless you know what you're doing
 #AppConfig[:frontend_prefix] = proc { "#{URI(AppConfig[:frontend_url]).path}/".gsub(%r{/+$}, "/") }
 #AppConfig[:frontend_proxy_prefix] = proc { "#{URI(AppConfig[:frontend_proxy_url]).path}/".gsub(%r{/+$}, "/") }
-AppConfig[:solr_url] = "http://localhost:8090"
-AppConfig[:indexer_url] = "http://localhost:8091"
-AppConfig[:public_url] = "http://localhost:8081"
+#AppConfig[:solr_url] = "http://localhost:8090"
+#AppConfig[:indexer_url] = "http://localhost:8091"
+#AppConfig[:public_url] = "http://localhost:8081"
 #AppConfig[:public_prefix] = proc { "#{URI(AppConfig[:public_url]).path}/".gsub(%r{/+$}, "/") }
 #AppConfig[:public_proxy_prefix] = proc { "#{URI(AppConfig[:public_proxy_url]).path}/".gsub(%r{/+$}, "/") }
 #AppConfig[:docs_url] = "http://localhost:8888"
@@ -79,11 +78,11 @@ AppConfig[:public_url] = "http://localhost:8081"
 ## UIs and/or the indexer may help users who are running into memory-related
 ## issues during migration.
 #
-AppConfig[:enable_backend] = true
-AppConfig[:enable_frontend] = true
-AppConfig[:enable_public] = true
-AppConfig[:enable_solr] = true
-AppConfig[:enable_indexer] = true
+#AppConfig[:enable_backend] = true
+#AppConfig[:enable_frontend] = true
+#AppConfig[:enable_public] = true
+#AppConfig[:enable_solr] = true
+#AppConfig[:enable_indexer] = true
 #AppConfig[:enable_docs] = true
 #
 ## Some use cases want the ability to shutdown the Jetty service using Jetty's
