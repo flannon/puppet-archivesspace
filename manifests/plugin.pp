@@ -7,7 +7,8 @@ define archivesspace::plugin (
   $ensure             = $archivesspace::params::ensure,
   $plugin_install_dir = $archivesspace::params::plugin_install_dir,
   $plugin_prefix      = $archivesspace::params::plugin_prefix,
-  $plugin_revision    = $archivesspace::params::plugin_revision,
+  $plugin_revision    = hiera('archivesspace::plugin_revision',
+          $archivesspace::params::plugin_revision),
   $plugin_source      = $archivesspace::params::plugin_source,
   $user               = $archivesspace::params::user,
   ){
