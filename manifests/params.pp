@@ -24,6 +24,7 @@ class archivesspace::params {
   $install_dir        = '/opt/archivesspace'
   $conf_dir           = "${install_dir}/config"
   $conf_file          = "${conf_dir}/config.rb"
+  $db_host            = 'localhost'
   $db_name            = 'asdb'
   $db_passwd          = 'aspace'
   $db_user            = 'asdb'
