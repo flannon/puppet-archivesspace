@@ -19,6 +19,10 @@ class archivesspace::install (
         $archivesspace::params::db_passwd),
   $db_user     = hiera('archivesspace::db_user',
         $archivesspace::params::db_user),
+  $java_heap_max     = hiera('archivesspace::java_heap_max',
+        $archivesspace::params::java_heap_max),
+  $log_level     = hiera('archivesspace::log_level',
+        $archivesspace::params::log_level),
   $install_dir = $archivesspace::params::install_dir,
   $user        = hiera('archivesspace::user',
         $archivesspace::params::user),
@@ -42,8 +46,18 @@ class archivesspace::install (
     owner   => $user,
     group   => $user,
     mode    => '0644',
-    #source  => 'puppet:///modules/archivesspace/config.rb',
     content => template('archivesspace/config.rb.erb'),
+    require => Package['archivesspace'],
+    notify  => File ['/opt/archivesspace/archivesspace.sh'],
+  }
+
+  # Install the init script
+  file { '/opt/archivesspace/archivesspace.sh' :
+    ensure  => file,
+    owner   => $user,
+    group   => $user,
+    mode    => '0755',
+    content => template('archivesspace/archviesspace.sh.erb'),
     require => Package['archivesspace'],
     notify  => Exec ['scripts/setup-database.sh'],
   }
