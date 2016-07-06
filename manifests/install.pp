@@ -57,7 +57,7 @@ class archivesspace::install (
     owner   => $user,
     group   => $user,
     mode    => '0755',
-    content => template('archivesspace/archviesspace.sh.erb'),
+    content => template('archivesspace/archivesspace.sh.erb'),
     require => Package['archivesspace'],
     notify  => Exec ['scripts/setup-database.sh'],
   }
