@@ -99,8 +99,7 @@ export JAVA_OPTS="-Darchivesspace-daemon=yes $JAVA_OPTS"
 export JAVA_OPTS="`echo $JAVA_OPTS | sed 's/\([#&;\`|*?~<>^(){}$\,]\)/\\\\\1/g'`"
 
 if [ "$ASPACE_JAVA_XMX" = "" ]; then
-    #ASPACE_JAVA_XMX="-Xmx1024m"
-    ASPACE_JAVA_XMX=<%= @java__heap_max %>
+    ASPACE_JAVA_XMX=<%= @java_heap_max %>
 fi
 
 if [ "$ASPACE_JAVA_XSS" = "" ]; then
