@@ -10,7 +10,7 @@
 #
 # Copyright 2015 Your name here, unless otherwise noted.
 #
-class archivesspace::install (
+class archivesspace::service (
   $db_host       = hiera('archivesspace::db_host',
       $archivesspace::params::db_host),
   $db_name       = hiera('archivesspace::db_name',
