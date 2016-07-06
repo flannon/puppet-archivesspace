@@ -78,7 +78,7 @@ class archivesspace::install (
     group   => $user,
   }
 
-  # service
+  # install the service script
   file { '/etc/init.d/archivesspace' :
     ensure  => link,
     #owner  => 'root',
@@ -88,13 +88,4 @@ class archivesspace::install (
     require => Package['archivesspace'],
   }
 
-  service { 'archivesspace' :
-    ensure     => 'running',
-    enable     => true,
-    hasstatus  => false,
-    hasrestart => false,
-    provider   => 'redhat',
-    require    => [File['/etc/init.d/archivesspace'],
-        File["${install_dir}/.setup-database.complete"]],
-  }
 }
