@@ -30,11 +30,30 @@ class archivesspace::install (
         $archivesspace::params::version),
 ) inherits archivesspace::params {
 
+  # Create the aspace user
+  user { $user :
+    ensure  => present,
+    comment => 'Archivesspace system user',
+    home    => $install_dir,
+    shell   => '/bin/bash',
+    uid     => '2046',
+  }
+
+  # Install the package
   package { 'archivesspace' :
     ensure => $version,
   }
 
-  # load the mysql connector
+  # Make sure aspace owns the package
+  file { "$install_dir" :
+    ensure  => directory,
+    owner   => $user,
+    group   => $user,
+    recurse => true,
+    require => [ Package['archivesspace'], User["${user}"] ],
+    }
+
+  # Load the mysql connector
   remote_file{"${install_dir}/lib/mysql-connector-java-5.1.34.jar":
     remote_location => 'http://central.maven.org/maven2/mysql/mysql-connector-java/5.1.34/mysql-connector-java-5.1.34.jar',
     require         => Package['archivesspace'],
