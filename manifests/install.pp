@@ -88,4 +88,13 @@ class archivesspace::install (
     require => Package['archivesspace'],
   }
 
+  user { $user :
+    ensure  => present,
+    comment => 'Archivesspace system user',
+    home    => $install_dir,
+    shell   => '/bin/bash',
+    uid     => '2046',
+  }
+    
+
 }

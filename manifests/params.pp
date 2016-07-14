@@ -30,7 +30,7 @@ class archivesspace::params {
   $db_user            = 'asdb'
   $java_heap_max      = '-Xxm1024m'
   $log_level          = '"debug"'
-  $user               = 'root'
+  $user               = 'aspace'
   $version            = 'installed'
   $plugin             = undef
   $plugin_conf        = undef
