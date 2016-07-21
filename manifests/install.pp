@@ -102,8 +102,7 @@ class archivesspace::install (
     ensure  => present,
     owner  => 'root',
     group  => 'root',
-    #source => 'puppet:///modules/archivesspace/archivesspace',
-    target  => '/opt/archivesspace/archivesspace.sh',
+    content => template('archivesspace/archivesspace.erb'),
     require => Package['archivesspace'],
   }
 

@@ -18,5 +18,5 @@
   # Description:       Start the ArchivesSpace archival management system
   ### END INIT INFO
 
-  export ARCHIVESSPACE_USER="aspace"
+  export ARCHIVESSPACE_USER="<%= @user %>"
   /opt/archivesspace/archivesspace.sh ${1+"$@"}
