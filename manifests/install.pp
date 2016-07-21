@@ -99,9 +99,9 @@ class archivesspace::install (
 
   # install the service script
   file { '/etc/init.d/archivesspace' :
-    ensure  => link,
-    #owner  => 'root',
-    #group  => 'root',
+    ensure  => present,
+    owner  => 'root',
+    group  => 'root',
     #source => 'puppet:///modules/archivesspace/archivesspace',
     target  => '/opt/archivesspace/archivesspace.sh',
     require => Package['archivesspace'],
