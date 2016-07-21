@@ -103,7 +103,6 @@ class archivesspace::install (
     owner  => 'root',
     group  => 'root',
     content => template('archivesspace/archivesspace.erb'),
-    target  => '/opt/archivesspace/archivesspace.sh',
     require => Package['archivesspace'],
   }
 
