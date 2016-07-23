@@ -100,8 +100,9 @@ class archivesspace::install (
   # install the service script
   file { '/etc/init.d/archivesspace' :
     ensure  => present,
-    owner  => 'root',
-    group  => 'root',
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0755',
     content => template('archivesspace/archivesspace.erb'),
     require => Package['archivesspace'],
   }
