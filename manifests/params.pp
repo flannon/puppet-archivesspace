@@ -29,6 +29,7 @@ class archivesspace::params {
   $db_passwd          = 'aspace'
   $db_user            = 'asdb'
   $fsid               = ''
+  $group              = 'aspace'
   $java_heap_max      = '-Xmx1024m'
   $log_level          = '"debug"'
   $user               = 'aspace'
