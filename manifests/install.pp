@@ -34,9 +34,9 @@ class archivesspace::install (
   user { $user :
     ensure  => present,
     comment => 'Archivesspace system user',
-    home    => $install_dir,
-    shell   => '/bin/bash',
-    uid     => '2046',
+    #home    => $install_dir,
+    #shell   => '/bin/bash',
+    #uid     => '2046',
   }
 
   # Install the package
@@ -47,9 +47,9 @@ class archivesspace::install (
   # Make sure aspace owns the package
   file { "$install_dir" :
     ensure  => directory,
-    owner   => $user,
-    group   => $user,
-    recurse => true,
+    #owner   => $user,
+    #group   => $user,
+    #recurse => true,
     require => [ Package['archivesspace'], User["${user}"] ],
     }
 
