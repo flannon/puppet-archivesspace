@@ -1,21 +1,18 @@
 #
 define archivesspace::plugin (
-  $conf_file          = $archivesspace::params::conf_file,
-  $install_dir        = $archivesspace::params::install_dir,
-  $plugin             = $archivesspace::params::plugine,
-  $plugin_conf        = $archivesspace::params::plugin_conf,
-  $ensure             = $archivesspace::params::ensure,
-  $plugin_install_dir = $archivesspace::params::plugin_install_dir,
-  $plugin_prefix      = $archivesspace::params::plugin_prefix,
-  $plugin_revision    = hiera('archivesspace::plugin_revision',
-          $archivesspace::params::plugin_revision),
-  $plugin_source      = $archivesspace::params::plugin_source,
-  $user               = $archivesspace::params::user,
+  String $conf_file          = lookup('archivesspace::conf_file', String, 'first' ),
+  String $install_dir        = lookup('archivesspace::install_dir', String, 'first'),
+  String $plugin             = lookup('archivesspace::plugine', String, 'first'),
+  String $plugin_conf        = lookup('archivesspace::plugin_conf', String, 'first'),
+  String $ensure             = lookup('archivesspace::ensure', String, 'first'),
+  String $plugin_install_dir = lookup('archivesspace::plugin_install_dir', String, 'first'),
+  String $plugin_prefix      = lookup('archivesspace::plugin_prefix', String, 'first'),
+  String $plugin_revision    = lookup('archivesspace::plugin_revision', String, 'first'),
+  String $plugin_source      = lookup('archivesspace::plugin_source', String, 'first'),
+  String $user               = lookup('archivesspace::user', String, 'first'),
   ){
     ensure_resource('package', 'git', {'ensure' => 'present'})
-    include archivesspace::params
 
-    #if  ($plugin != undef) or ($plugin_source != undef) or ($plugin_conf != undef) {
     if  ($plugin != undef) or ($plugin_source != undef) {
       vcsrepo { "${plugin_install_dir}/${plugin}":
         ensure   => $ensure,
@@ -37,5 +34,4 @@ define archivesspace::plugin (
     else {
       warning ('$plugin, $plugin_source $plugin_conf must be defined.')
     }
-
 }

@@ -11,26 +11,18 @@
 # Copyright 2015 Your name here, unless otherwise noted.
 #
 class archivesspace (
-  $db_host       = hiera('archivesspace::db_host',
-      $archivesspace::params::db_host),
-  $db_name       = hiera('archivesspace::db_name',
-      $archivesspace::params::db_name),
-  $db_passwd     = hiera('archivesspace::db_passwd',
-        $archivesspace::params::db_passwd),
-  $db_user       = hiera('archivesspace::db_user',
-        $archivesspace::params::db_user),
-  $java_heap_max = hiera('archivesspace::java_heap_max',
-        $archivesspace::params::java_heap_max),
-  $log_level     = hiera('archivesspace::log_level',
-        $archivesspace::params::log_level), 
-  $install_dir   = $archivesspace::params::install_dir,
-  $user          = hiera('archivesspace::user',
-        $archivesspace::params::user),
-  $version       = hiera('archivesspace::version',
-        $archivesspace::params::version),
-  $plugin_ensure = $archivesspace::params::plugin_ensure,
-  $ensure        = $archivesspace::params::ensure,
-) inherits archivesspace::params {
+  String $db_host       = lookup('archivesspace::db_host', String, 'first' ),
+  String $db_name       = lookup('archivesspace::db_name', String, 'first' ),
+  String $db_passwd     = lookup('archivesspace::db_passwd', String, 'first' ),
+  String $db_user       = lookup('archivesspace::db_user', String, 'first' ),
+  String $java_heap_max = lookup('archivesspace::java_heap_max', String, 'first' ),
+  String $log_level     = lookup('archivesspace::log_level', String, 'first' ),
+  String $install_dir   = lookup('archivesspace::install_dir', String, 'first' ),
+  String $user          = lookup('archivesspace::user', String, 'first' ),
+  String $version       = lookup('archivesspace::version', String, 'first' ),
+  String $plugin_ensure = lookup('archivesspace::plugin_ensure', String, 'first' ),
+  String $ensure        = lookup('archivesspace::params::ensure', String, 'first' ),
+){
 
   ensure_resource('package', 'git', {'ensure' => 'present'})
 
