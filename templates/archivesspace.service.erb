@@ -1,0 +1,15 @@
+[Unit]
+Description=Archivesspace Service
+After=syslog.target network.target
+
+[Service]
+Type=forking
+ExecStart=<%= @install_dir %>/archivesspace.sh start
+PIDFile=<%= @install_dir %>/data/.archivesspace.pid
+User=<%= @user %>
+Group=<%= @group %>
+TimeoutStopSec=10
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

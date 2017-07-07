@@ -1,4 +1,4 @@
-# == Class: archivesspace::install
+# == Class: archivesspace::database
 #
 # Full description of class archivesspace here.
 #
@@ -10,7 +10,7 @@
 #
 # Copyright 2015 Your name here, unless otherwise noted.
 #
-class archivesspace::service (
+class archivesspace::database (
   String $db_host       = lookup('archivesspace::db_host', String, 'first'),
   String $db_name       = lookup('archivesspace::db_name', String, 'first'),
   String $db_passwd     = lookup('archivesspace::db_passwd', String, 'first'),
@@ -22,22 +22,27 @@ class archivesspace::service (
   String $version       = lookup('archivesspace::version', String, 'first'),
 ){
 
-    # install the service script
-  file { '/etc/systemd/system/archivesspace.service' :
-    ensure  => present,
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0755',
-    content => template('archivesspace/archivesspace.service.erb'),
-    require => Package['archivesspace'],
+  class { "mysql::server" :
+    remove_default_accounts => true,
   }
-  service { 'archivesspace.service' :
-    enable     => true,
-    ensure     => running,
-    hasstatus  => true,
-    provider   => 'systemd',
-    require => [ Package['archivesspace'], File['/etc/systemd/system/archivesspace.service'], File["${install_dir}/.setup-database.complete"]],
+  mysql::db { $db_name :
+    user     => $db_user,
+    password => $db_passwd,
+    dbname   => $db_name,
+    host     => 'localhost',
+    grant    => [ 'ALL' ],
+    notify   => Class['archivesspace'],
   }
+  include mysql::client
+  include mysql::bindings
 
-
+  #service { 'archivesspace' :
+  #  ensure     => 'running',
+  #  enable     => true,
+  #  hasstatus  => false,
+  #  hasrestart => false,
+  #  provider   => 'redhat',
+  #  require    => [File['/etc/init.d/archivesspace'],
+  #      File["${install_dir}/.setup-database.complete"]],
+  #}
 }

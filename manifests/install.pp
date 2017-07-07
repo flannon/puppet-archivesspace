@@ -19,7 +19,8 @@ class archivesspace::install (
   String $log_level     = lookup('archivesspace::log_level', String, 'first'),
   String $install_dir   = lookup('archivesspace::install_dir', String, 'first'),
   String $user          = lookup('archivesspace::user', String, 'first'),
-  String $version       = lookup('archivesspace::version', String, 'first'),
+  String $group         = lookup('archivesspace::group', String, 'first'),
+  String $revision      = lookup('archivesspace::revision', String, 'first'),
 ){
 
   # Create the aspace user
@@ -29,10 +30,9 @@ class archivesspace::install (
   }
 
   # Install the package
-  #package { 'archivesspace' :
-  #  ensure => $version,
-  #}
-  ##vcsrepo
+  package { 'archivesspace' :
+    ensure => $version,
+  }
 
   # Make sure aspace owns the package
   file { "$install_dir" :
@@ -41,31 +41,31 @@ class archivesspace::install (
     }
 
   # Load the mysql connector
-  remote_file{"${install_dir}/lib/mysql-connector-java-5.1.34.jar":
+  archivesspace::remote_file{"${install_dir}/lib/mysql-connector-java-5.1.34.jar":
     remote_location => 'http://central.maven.org/maven2/mysql/mysql-connector-java/5.1.34/mysql-connector-java-5.1.34.jar',
-    require         => Package['archivesspace'],
+    require => Package['archivesspace'],
   }
 
   # write the config file
-  file { '/opt/archivesspace/config/config.rb' :
+  file { "${install_dir}/config/config.rb" :
     ensure  => file,
     owner   => $user,
     group   => $user,
     mode    => '0644',
     content => template('archivesspace/config.rb.erb'),
     require => Package['archivesspace'],
-    notify  => File ['/opt/archivesspace/archivesspace.sh'],
+    notify  => File["${install_dir}/archivesspace.sh"],
   }
 
   # Install the init script
-  file { '/opt/archivesspace/archivesspace.sh' :
+  file { "${install_dir}/archivesspace.sh" :
     ensure  => file,
     owner   => $user,
     group   => $user,
     mode    => '0755',
     content => template('archivesspace/archivesspace.sh.erb'),
     require => Package['archivesspace'],
-    notify  => Exec ['scripts/setup-database.sh'],
+    notify  => Exec['scripts/setup-database.sh'],
   }
 
   # run setup-database.sh
@@ -74,7 +74,7 @@ class archivesspace::install (
     command => "${install_dir}/scripts/setup-database.sh",
     timeout => 2600,
     creates => "${install_dir}/.setup-database.complete",
-    require  => [Remote_file["${install_dir}/lib/mysql-connector-java-5.1.34.jar"], File['/opt/archivesspace/config/config.rb'] ],
+    require  => [Archivesspace::Remote_file["${install_dir}/lib/mysql-connector-java-5.1.34.jar"], File["${install_dir}/config/config.rb"] ],
     notify  => File["${install_dir}/.setup-database.complete"],
   }
   file { "${install_dir}/.setup-database.complete" :
@@ -84,14 +84,5 @@ class archivesspace::install (
     group   => $user,
   }
 
-  # install the service script
-  file { '/etc/init.d/archivesspace' :
-    ensure  => present,
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0755',
-    content => template('archivesspace/archivesspace.erb'),
-    require => Package['archivesspace'],
-  }
 
 }
