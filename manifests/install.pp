@@ -20,7 +20,7 @@ class archivesspace::install (
   String $install_dir   = lookup('archivesspace::install_dir', String, 'first'),
   String $user          = lookup('archivesspace::user', String, 'first'),
   String $group         = lookup('archivesspace::group', String, 'first'),
-  String $revision      = lookup('archivesspace::revision', String, 'first'),
+  String $version      = lookup('archivesspace::version', String, 'first'),
 ){
 
   # Create the aspace user
