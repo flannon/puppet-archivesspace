@@ -6,7 +6,7 @@ archivesspace::conf_dir: ${install_dir}/config
 archivesspace::conf_file: ${conf_dir}/config.rb
 archivesspace::db_host: localhost
 archivesspace::db_name: asdb
-archivesspace::db_passwd: aspace
+archivesspace::db_passwd: passwd
 archivesspace::db_user: asdb
 archivesspace::fsdb: undef
 archivesspace::java_heap_max: -Xmx1024m
