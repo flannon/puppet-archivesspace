@@ -26,10 +26,10 @@ class archivesspace (
 
   ensure_resource('package', 'git', {'ensure' => 'present'})
 
-  include archivesspace::database
+  #include archivesspace::database
   include archivesspace::install
   include archivesspace::service
-  Class['archivesspace::database']->
+  #Class['archivesspace::database']->
   Class['archivesspace::install']->
   Class['archivesspace::service']
 
