@@ -22,27 +22,17 @@ class archivesspace::database (
   String $version       = lookup('archivesspace::version', String, 'first'),
 ){
 
-  class { "mysql::server" :
-    remove_default_accounts => true,
-  }
+  #class { "mysql::server" :
+  #  remove_default_accounts => true,
+  #}
   mysql::db { $db_name :
     user     => $db_user,
     password => $db_passwd,
     dbname   => $db_name,
     host     => 'localhost',
     grant    => [ 'ALL' ],
+    require  => Class['mysql::server'],
     notify   => Class['archivesspace'],
   }
-  include mysql::client
-  include mysql::bindings
 
-  #service { 'archivesspace' :
-  #  ensure     => 'running',
-  #  enable     => true,
-  #  hasstatus  => false,
-  #  hasrestart => false,
-  #  provider   => 'redhat',
-  #  require    => [File['/etc/init.d/archivesspace'],
-  #      File["${install_dir}/.setup-database.complete"]],
-  #}
 }
