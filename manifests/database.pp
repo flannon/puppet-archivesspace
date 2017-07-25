@@ -31,8 +31,8 @@ class archivesspace::database (
     dbname   => $db_name,
     host     => 'localhost',
     grant    => [ 'ALL' ],
-    require  => Class['mysql::server'],
-    notify   => Class['archivesspace'],
+    #require  => Class['mysql::server'],
+    #notify   => Class['archivesspace'],
   }
 
 }
