@@ -2,8 +2,8 @@
 archivesspace::position: 'module-common.yaml'
 archivesspace::ensure: 'present'
 archivesspace::install_dir: '/opt/archivesspace'
-archivesspace::conf_dir: "${install_dir}/config"
-archivesspace::conf_file: "${conf_dir}/config.rb"
+archivesspace::conf_dir: "%{install_dir}/config"
+archivesspace::conf_file: "%{conf_dir}/config.rb"
 archivesspace::user: 'aspace'
 archivesspace::group: 'aspace'
 archivesspace::db_user: 'aspace'
@@ -16,7 +16,7 @@ archivesspace::log_level: '"debug"'
 archivesspace::version: '2.0.0-2.el7.centos'
 archivesspace::plugin: undef
 archivesspace::plugin_conf: undef
-archivesspace::plugin_install_dir: '${install_dir}/plugins'
+archivesspace::plugin_install_dir: "%{install_dir}/plugins"
 archivesspace::plugin_prefix: '^AppConfig[:plugins] ='
 archivesspace::plugin_revison: 'master'
 archivesspace::plugin_source: undef

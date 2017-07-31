@@ -1,8 +1,8 @@
 #
 define archivesspace::plugin (
-  String $conf_file          = lookup('archivesspace::conf_file', String, 'first' ),
   String $install_dir        = lookup('archivesspace::install_dir', String, 'first'),
-  String $plugin             = lookup('archivesspace::plugine', String, 'first'),
+  String $conf_file          = lookup('archivesspace::conf_file', String, 'first' ),
+  String $plugin             = lookup('archivesspace::plugin', String, 'first'),
   String $plugin_conf        = lookup('archivesspace::plugin_conf', String, 'first'),
   String $ensure             = lookup('archivesspace::ensure', String, 'first'),
   String $plugin_install_dir = lookup('archivesspace::plugin_install_dir', String, 'first'),
