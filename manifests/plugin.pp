@@ -20,8 +20,8 @@ define archivesspace::plugin (
 
     #if  ($plugin != undef) or ($plugin_source != undef) {
     if ($plugin_source != undef) {
-      vcsrepo { "$plugin_install_dir/$title" :
-      #vcsrepo { "/opt/archivesspace/${plugin}" :
+      vcsrepo { $plugin_install_dir$title :
+      #vcsrepo { "/opt/archivesspace/${title}" :
         ensure   => $ensure,
         owner    => $user,
         group    => $user,
