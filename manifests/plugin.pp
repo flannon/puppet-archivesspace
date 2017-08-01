@@ -1,6 +1,7 @@
 #
 define archivesspace::plugin (
   String $install_dir        = lookup('archivesspace::install_dir', String, 'first'),
+  String $conf_dir          = lookup('archivesspace::conf_dir', String, 'first' ),
   String $conf_file          = lookup('archivesspace::conf_file', String, 'first' ),
   String $plugin             = lookup('archivesspace::plugin', String, 'first'),
   String $plugin_conf        = lookup('archivesspace::plugin_conf', String, 'first'),
@@ -18,8 +19,8 @@ define archivesspace::plugin (
     alert("install_dir: $install_dir")
 
     if  ($plugin != undef) or ($plugin_source != undef) {
-      #vcsrepo { "$plugin_install_dir/$plugin":
-      vcsrepo { "/opt/archivesspace/${plugin}" :
+      vcsrepo { "${plugin_install_dir}/${plugin}":
+      #vcsrepo { "/opt/archivesspace/${plugin}" :
         ensure   => $ensure,
         owner    => $user,
         group    => $user,
