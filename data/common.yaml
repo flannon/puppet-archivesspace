@@ -16,7 +16,7 @@ archivesspace::log_level: '"debug"'
 archivesspace::version: '2.0.0-2.el7.centos'
 archivesspace::plugin: undef
 #archivesspace::plugin_conf: undef
-archivesspace::plugin_conf: 'AppConfig[:plugins] = ['local',  'lcnaf', 'aspace-public-formats']"
+archivesspace::plugin_conf: "AppConfig[:plugins] = ['local',  'lcnaf', 'aspace-public-formats']"
 archivesspace::plugin_install_dir: "%{install_dir}/plugins"
 #archivesspace::plugin_install_dir: '/opt/archivesspace/plugins/'
 #archivesspace::plugin_install_dir: '/opt/archivesspace/plugins'
