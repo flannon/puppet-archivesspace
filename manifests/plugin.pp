@@ -14,14 +14,8 @@ define archivesspace::plugin (
   ){
     ensure_resource('package', 'git', {'ensure' => 'present'})
 
-    alert("plugin: $plugin")
-    alert("plugin_install_dir: $plugin_install_dir")
-    alert("install_dir: $install_dir")
-
-    #if  ($plugin != undef) or ($plugin_source != undef) {
     if ($plugin_source != undef) {
       vcsrepo { "${plugin_install_dir}'/'${title}" :
-      #vcsrepo { "/opt/archivesspace/${title}" :
         ensure   => $ensure,
         owner    => $user,
         group    => $user,
