@@ -37,8 +37,8 @@ class archivesspace::install (
   # Make sure aspace owns the package
   file { "$install_dir" :
     ensure  => directory,
-    #owner   => $user,
-    #group   => $user,
+    owner   => $user,
+    group   => $user,
     require => [ Package['archivesspace'], User["${user}"] ],
     }
 
