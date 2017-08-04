@@ -14,10 +14,15 @@ define archivesspace::plugin (
   ){
     ensure_resource('package', 'git', {'ensure' => 'present'})
 
+    # This is a stupid kludge.  The enclosing quotes in the call to 
+    # vcsrepo on line 26 should interpret / as a literal values, but it
+    # chokes on it.  The only I could get it to work was either adding
+    # a trainling / to the file path defined as a varialbe value in
+    # common.yaml, which breaks the file path convention for everything
+    # else, or by defiing $slash below.
     $slash = '/'
 
     if ($plugin_source != undef) {
-      #vcsrepo { "${plugin_install_dir}'/'${title}" :
       vcsrepo { "${plugin_install_dir}${slash}${title}" :
         ensure   => $ensure,
         owner    => $user,
