@@ -14,9 +14,11 @@ define archivesspace::plugin (
   ){
     ensure_resource('package', 'git', {'ensure' => 'present'})
 
+    $slash = '/'
+
     if ($plugin_source != undef) {
       #vcsrepo { "${plugin_install_dir}'/'${title}" :
-      vcsrepo { "${plugin_install_dir}\/${title}" :
+      vcsrepo { "${plugin_install_dir}${slash}${title}" :
         ensure   => $ensure,
         owner    => $user,
         group    => $user,
