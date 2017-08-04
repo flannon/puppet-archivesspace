@@ -43,7 +43,7 @@ class archivesspace::install (
     }
 
   # Load the mysql connector
-  archivesspace::remote_file{"${install_dir}/lib/mysql-connector-java-5.1.34.jar":
+  archivesspace::remote_file{"${install_dir}/lib/mysql-connector-java-5.1.39.jar":
     remote_location => 'http://central.maven.org/maven2/mysql/mysql-connector-java/5.1.39/mysql-connector-java-5.1.39.jar',
     require => Package['archivesspace'],
   }
@@ -85,6 +85,4 @@ class archivesspace::install (
     owner   => $user,
     group   => $user,
   }
-
-
 }
