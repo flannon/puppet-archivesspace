@@ -76,7 +76,7 @@ class archivesspace::install (
     command => "${install_dir}/scripts/setup-database.sh",
     timeout => 2600,
     creates => "${install_dir}/.setup-database.complete",
-    require  => [Archivesspace::Remote_file["${install_dir}/lib/mysql-connector-java-5.1.34.jar"], File["${install_dir}/config/config.rb"] ],
+    require  => [Archivesspace::Remote_file["${install_dir}/lib/mysql-connector-java-5.1.39.jar"], File["${install_dir}/config/config.rb"] ],
     notify  => File["${install_dir}/.setup-database.complete"],
   }
   file { "${install_dir}/.setup-database.complete" :
