@@ -11,6 +11,7 @@ define archivesspace::plugin (
   String $plugin_revision    = lookup('archivesspace::plugin_revision', String, 'first'),
   String $plugin_source      = lookup('archivesspace::plugin_source', String, 'first'),
   String $user               = lookup('archivesspace::user', String, 'first'),
+  String $group              = lookup('archivesspace::group', String, 'first'),
   ){
     ensure_resource('package', 'git', {'ensure' => 'present'})
 

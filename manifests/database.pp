@@ -19,6 +19,7 @@ class archivesspace::database (
   String $log_level     = lookup('archivesspace::log_level', String, 'first'),
   String $install_dir   = lookup('archivesspace::install_dir', String, 'first'),
   String $user          = lookup('archivesspace::user', String, 'first'),
+  String $group         = lookup('archivesspace::group', String, 'first'),
   String $version       = lookup('archivesspace::version', String, 'first'),
 ){
 
