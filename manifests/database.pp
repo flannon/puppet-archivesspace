@@ -23,9 +23,9 @@ class archivesspace::database (
   String $version       = lookup('archivesspace::version', String, 'first'),
 ){
 
-  class { "mysql::server" :
-    remove_default_accounts => true,
-  }
+  #class { "mysql::server" :
+  #  remove_default_accounts => true,
+  #}
   mysql::db { $db_name :
     user     => $db_user,
     password => $db_passwd,
