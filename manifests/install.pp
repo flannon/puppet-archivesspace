@@ -21,6 +21,14 @@ class archivesspace::install (
   String $user          = lookup('archivesspace::user', String, 'first'),
   String $group         = lookup('archivesspace::group', String, 'first'),
   String $version      = lookup('archivesspace::version', String, 'first'),
+  String $enable_backend  = lookup('archivesspace::enable_backend', String 'first'),
+  String $enable_frontend = lookup('archivesspace::enable_frontend', String 'first'),
+  String $enable_public   = lookup('archivesspace::enable_public', String 'first'),
+  String $enable_solr     = lookup('archivesspace::enable_solr', String 'first'),
+  String $enable_indexer  = lookup('archivesspace::enable_indexer', String 'first'),
+  String $enable_docs     = lookup('archivesspace::enable_docs', String 'first'),
+  String $enable_oai      = lookup('archivesspace::enable_oai', String 'first'),
+
 ){
 
   # Create the aspace user
@@ -48,9 +56,9 @@ class archivesspace::install (
     require => Package['archivesspace'],
   }
 
-  $config_rb=regsubst($version, '^(.*)-{.*)$', '\1')
+  $config_version=regsubst($version, '^([0-9].*)\-(.*)$', '\1')
 
-  alert("config_rb: $config_rb")
+  alert("config_rb: $config_version")
 
   # write the config file
   file { "${install_dir}/config/config.rb" :
@@ -58,7 +66,7 @@ class archivesspace::install (
     owner   => $user,
     group   => $user,
     mode    => '0644',
-    content => template('archivesspace/config.rb.erb'),
+    content => template("archivesspace/config.${config_version}.rb.erb"),
     require => Package['archivesspace'],
     notify  => File["${install_dir}/archivesspace.sh"],
   }
