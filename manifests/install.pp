@@ -48,6 +48,10 @@ class archivesspace::install (
     require => Package['archivesspace'],
   }
 
+  $config_rb=regsubst($version, '^(.*)-{.*)$', '\1')
+
+  alert("config_rb: $config_rb")
+
   # write the config file
   file { "${install_dir}/config/config.rb" :
     ensure  => file,
