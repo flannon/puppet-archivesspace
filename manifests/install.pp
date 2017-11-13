@@ -39,7 +39,7 @@ class archivesspace::install (
 
   # Install the package
   package { 'archivesspace' :
-    ensure => $package_version,
+    ensure => $version,
   }
 
   # Make sure aspace owns the package
