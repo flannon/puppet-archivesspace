@@ -15,10 +15,9 @@
 ## Set your database name and credentials here.  Example:
 ##
 ##  AppConfig[:db_url] = "jdbc:mysql://127.0.0.1:3306/aspace?useUnicode=true&characterEncoding=UTF-8&user=as&password=as123"
+AppConfig[:db_url] = "jdbc:mysql://<%= @db_host %>:3306/<%= @db_name %>?user=<%= @db_user %>&password=<%= @db_passwd %>&useUnicode=true&characterEncoding=UTF-8"
 ##
 #AppConfig[:db_url] = proc { AppConfig.demo_db_url }
-#AppConfig[:db_url] = "jdbc:mysql://poly-asdb-0.caa7arvvnl9h.us-east-1.rds.amazonaws.com:3306/asdb?user=aspace&password=letmein#poly&useUnicode=true&characterEncoding=UTF-8"
-AppConfig[:db_url] = "jdbc:mysql://<%= @db_host %>:3306/<%= @db_name %>?user=<%= @db_user %>&password=<%= @db_passwd %>&useUnicode=true&characterEncoding=UTF-8"
 #
 ## Set the maximum number of database connections used by the application.
 ## Default is derived from the number of indexer threads.
@@ -34,11 +33,11 @@ AppConfig[:frontend_url] = "http://localhost:8080"
 #
 ## The ArchivesSpace public interface listens on port 8081 by default.  You can
 ## set it to something else below.
-#AppConfig[:public_url] = "http://localhost:8081"
+AppConfig[:public_url] = "http://localhost:8081"
 #
 ## The ArchivesSpace OAI server listens on port 8082 by default.  You can
 ## set it to something else below.
-#AppConfig[:oai_url] = "http://localhost:8082"
+AppConfig[:oai_url] = "http://localhost:8082"
 #
 ## The ArchivesSpace Solr index listens on port 8090 by default.  You can
 ## set it to something else below.
@@ -174,14 +173,13 @@ AppConfig[:db_debug_log] = false
 ## applications from starting. Temporarily disabling the frontend and public
 ## UIs and/or the indexer may help users who are running into memory-related
 ## issues during migration.
-#
-AppConfig[:enable_backend] = true
-AppConfig[:enable_frontend] = true
-AppConfig[:enable_public] = false
-AppConfig[:enable_solr] = true
-AppConfig[:enable_indexer] = true
-AppConfig[:enable_docs] = false
-AppConfig[:enable_oai] = false
+AppConfig[:enable_backend] = <%= @enable_backend %>
+AppConfig[:enable_frontend] = <%= @enable_frontend %>
+AppConfig[:enable_public] = <%= @enable_public %>
+AppConfig[:enable_solr] = <%= @enable_solr %>
+AppConfig[:enable_indexer] = <%= @enable_indexer %>
+AppConfig[:enable_docs] = <%= @enable_docs %>
+AppConfig[:enable_oai] = <%= @enable_oai %>
 #
 ## Some use cases want the ability to shutdown the Jetty service using Jetty's
 ## ShutdownHandler, which allows a POST request to a specific URI to signal
@@ -406,7 +404,7 @@ AppConfig[:help_enabled] = false
 ## TODO: Clean up configuration options
 #
 #AppConfig[:pui_search_results_page_size] = 10
-#AppConfig[:pui_branding_img] = 'ASpaceOrgHome.jpg'
+#AppConfig[:pui_branding_img] = 'archivesspace.small.png'
 #AppConfig[:pui_block_referrer] = true # patron privacy; blocks full 'referer' when going outside the domain
 AppConfig[:pui_enable_staff_link] = false # attempt to add a link back to the staff interface
 #
@@ -509,6 +507,9 @@ AppConfig[:pui_page_actions_print] = false
 ## 'pui_request_email_fallback_from_address' the 'from' email address for repositories that don't define their own email
 ##AppConfig[:pui_request_email_fallback_from_address] = 'testing@example.com'
 #
+## use the repository record email address for requests (overrides config email)
+#AppConfig[:pui_request_use_repo_email] = false
+#
 ## Example sendmail configuration:
 ## AppConfig[:pui_email_delivery_method] = :sendmail
 ## AppConfig[:pui_email_sendmail_settings] = {
@@ -533,4 +534,3 @@ AppConfig[:pui_page_actions_print] = false
 #
 ##The number of characters to truncate before showing the 'Read More' link on notes
 #AppConfig[:pui_readmore_max_characters] = 450
-

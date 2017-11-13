@@ -20,7 +20,7 @@ class archivesspace::install (
   String $install_dir   = lookup('archivesspace::install_dir', String, 'first'),
   String $user          = lookup('archivesspace::user', String, 'first'),
   String $group         = lookup('archivesspace::group', String, 'first'),
-  String $version      = lookup('archivesspace::version', String, 'first'),
+  String $version       = lookup('archivesspace::version', String, 'first'),
   String $enable_backend  = lookup('archivesspace::enable_backend', String, 'first'),
   String $enable_frontend = lookup('archivesspace::enable_frontend', String, 'first'),
   String $enable_public   = lookup('archivesspace::enable_public', String, 'first'),
@@ -39,7 +39,7 @@ class archivesspace::install (
 
   # Install the package
   package { 'archivesspace' :
-    ensure => $version,
+    ensure => $package_version,
   }
 
   # Make sure aspace owns the package
@@ -66,7 +66,7 @@ class archivesspace::install (
     owner   => $user,
     group   => $user,
     mode    => '0644',
-    content => template("archivesspace/config.${config_version}.rb.erb"),
+    content => template("archivesspace/config.rb.${config_version}.erb"),
     require => Package['archivesspace'],
     notify  => File["${install_dir}/archivesspace.sh"],
   }
@@ -77,7 +77,7 @@ class archivesspace::install (
     owner   => $user,
     group   => $user,
     mode    => '0755',
-    content => template('archivesspace/archivesspace.sh.erb'),
+    content => template("archivesspace/archivesspace.sh.${config_version}.erb'),
     require => Package['archivesspace'],
     notify  => Exec['scripts/setup-database.sh'],
   }
