@@ -30,10 +30,8 @@ class archivesspace::database (
     user     => $db_user,
     password => $db_passwd,
     dbname   => $db_name,
-    host     => 'localhost',
+    host     => $db_host,
     grant    => [ 'ALL' ],
-    #require  => Class['mysql::server'],
-    #notify   => Class['archivesspace'],
   }
 
 }
