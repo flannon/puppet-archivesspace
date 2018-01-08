@@ -28,7 +28,7 @@ class archivesspace::install (
   String $enable_indexer  = lookup('archivesspace::enable_indexer', String, 'first'),
   String $enable_docs     = lookup('archivesspace::enable_docs', String, 'first'),
   String $enable_oai      = lookup('archivesspace::enable_oai', String, 'first'),
-  String $indexer_records_per_thread = lookup('archivesspace::indexer_records_per_thread' String, 'first'),
+  String $indexer_records_per_thread = lookup('archivesspace::indexer_records_per_thread', String, 'first'),
   String $indexer_thread_count = lookup('archivesspace::indexer_thread_count' String, 'first'),
 
 ){
