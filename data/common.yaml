@@ -31,5 +31,5 @@ archivesspace::plugin_ensure: 'present'
 archivesspace::plugin_prefix: '^AppConfig[:plugins] ='
 archivesspace::plugin_revison: 'master'
 archivesspace::plugin_source: undef
-archivesspace::indexer_records_per_thread: '15'
-archivesspace::indexer_thread_count: '2'
+#archivesspace::indexer_records_per_thread: '15'
+#archivesspace::indexer_thread_count: '2'
