@@ -23,22 +23,41 @@ class archivesspace::service (
   String $version       = lookup('archivesspace::version', String, 'first'),
 ){
 
-    # install the service script
-  file { '/etc/systemd/system/archivesspace.service' :
-    ensure  => present,
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0755',
-    content => template('archivesspace/archivesspace.service.erb'),
-    require => Package['archivesspace'],
-  }
-  service { 'archivesspace.service' :
-    enable     => true,
-    ensure     => running,
-    hasstatus  => true,
-    provider   => 'systemd',
-    require => [ Package['archivesspace'], File['/etc/systemd/system/archivesspace.service'], File["${install_dir}/.setup-database.complete"]],
-  }
+  # install the service script
+  if ($facts['os']['family'] == 'RedHat') and ($facts['os']['release']['m    ajor'] == '6') {
 
+  file { "/etc/init.d/archivesspace.sh" :
+    ensure  => file,
+    owner   => $user,
+    group   => $user,
+    mode    => '0755',
+    content => template("archivesspace/archivesspace.erb"),
+    require => Package['archivesspace'],
+    notify  => File["${install_dir}/archivesspace.sh"],
+    }
+    service { 'archivesspace-service' :
+      enable     => true,
+      ensure     => running,
+      hasstatus  => true,
+      require => [ Package['archivesspace'], File['/etc/systemd/system/archivesspace.service'], File["${install_dir}/.setup-database.complete"]],
+    }
+  }
+  elsif ($facts['os']['family'] == 'RedHat') and ($facts['os']['release']['m    ajor'] == '7') {
+    file { '/etc/systemd/system/archivesspace.service' :
+      ensure  => present,
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0755',
+      content => template('archivesspace/archivesspace.service.erb'),
+      require => Package['archivesspace'],
+    }
+    service { 'archivesspace.service' :
+      enable     => true,
+      ensure     => running,
+      hasstatus  => true,
+      provider   => 'systemd',
+      require => [ Package['archivesspace'], File['/etc/systemd/system/archivesspace.service'], File["${install_dir}/.setup-database.complete"]],
+    }
+  }
 
 }

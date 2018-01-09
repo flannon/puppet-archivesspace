@@ -71,20 +71,6 @@ class archivesspace::install (
     notify  => File["${install_dir}/archivesspace.sh"],
   }
 
-  # If el6 nstall the init script
-  if ($facts['os']['family'] == 'RedHat') and ($facts['os']['release']['major'] == '6') {
-    alert ("This is centos 6, inistalling init script")
-    file { "/etc/init.d/archivesspace.sh" :
-      ensure  => file,
-      owner   => $user,
-      group   => $user,
-      mode    => '0755',
-      content => template("archivesspace/archivesspace.erb"),
-      require => Package['archivesspace'],
-      notify  => File["${install_dir}/archivesspace.sh"],
-    }
-  }
-
   file { "${install_dir}/archivesspace.sh" :
     ensure  => file,
     owner   => $user,
