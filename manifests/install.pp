@@ -81,7 +81,7 @@ class archivesspace::install (
       mode    => '0755',
       content => template("archivesspace/archivesspace.erb"),
       require => Package['archivesspace'],
-      notify  => Exec["${install_dir}/archivesspace.sh"],
+      notify  => File["${install_dir}/archivesspace.sh"],
     }
   }
 
