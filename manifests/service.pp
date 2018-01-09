@@ -26,7 +26,7 @@ class archivesspace::service (
   # install the service script
   if ($facts['os']['family'] == 'RedHat') and ($facts['os']['release']['m    ajor'] == '6') {
 
-  file { "/etc/init.d/archivesspace.sh" :
+  file { "/etc/init.d/archivesspace" :
     ensure  => file,
     owner   => $user,
     group   => $user,
@@ -35,10 +35,11 @@ class archivesspace::service (
     require => Package['archivesspace'],
     notify  => File["${install_dir}/archivesspace.sh"],
     }
-    service { 'archivesspace-service' :
+    service { 'archivesspace' :
       enable     => true,
       ensure     => running,
       hasstatus  => true,
+      provider   => 'init',
       require => [ Package['archivesspace'], File['/etc/systemd/system/archivesspace.service'], File["${install_dir}/.setup-database.complete"]],
     }
   }
