@@ -21,7 +21,8 @@ archivesspace::fsdb: undef
 archivesspace::java_heap_max: '-Xmx1024m'
 archivesspace::log_level: '"debug"'
 #archivesspace::version: '2.2.0'
-archivesspace::version: '2.2.0-1.el7.centos'
+#archivesspace::version: '2.2.0-1.el7.centos'
+archivesspace::version: undef
 #archivesspace::package_version: "%{version}.el7.centos"
 archivesspace::plugin: undef
 archivesspace::plugin_conf: undef
