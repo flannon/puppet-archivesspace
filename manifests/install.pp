@@ -57,6 +57,7 @@ class archivesspace::install (
   }
 
   alert("version: $version")
+  # version outputL: 2.2.2-1.el7
 
   $config_version=regsubst($version, '^([0-9].*)\-(.*)$', '\1')
 
