@@ -56,6 +56,8 @@ class archivesspace::install (
     require => Package['archivesspace'],
   }
 
+  alert("version: $version")
+
   $config_version=regsubst($version, '^([0-9].*)\-(.*)$', '\1')
 
   alert("config_rb: $config_version")
