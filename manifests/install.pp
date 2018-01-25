@@ -28,7 +28,7 @@ class archivesspace::install (
   #String $enable_indexer  = lookup('archivesspace::enable_indexer', String, 'first'),
   #String $enable_docs     = lookup('archivesspace::enable_docs', String, 'first'),
   #String $enable_oai      = lookup('archivesspace::enable_oai', String, 'first'),
-    String $ensure        = lookup('archivesspace::params::ensure', String, 'first' ),
+    String $ensure        = lookup('archivesspace::ensure', String, 'first' ),
   String $version       = lookup('archivesspace::version', String, 'first' ),
   String $install_dir   = lookup('archivesspace::install_dir', String, 'first' ),
   String $conf_dir   = lookup('archivesspace::conf_dir', String, 'first' ),
