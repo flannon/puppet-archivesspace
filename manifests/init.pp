@@ -11,7 +11,7 @@
 # Copyright 2015 Your name here, unless otherwise noted.
 #
 class archivesspace (
-  String $ensure        = lookup('archivesspace::params::ensure', String, 'first' ),
+  String $ensure        = lookup('archivesspace:::ensure', String, 'first' ),
   String $version       = lookup('archivesspace::version', String, 'first' ),
   String $install_dir   = lookup('archivesspace::install_dir', String, 'first' ),
   String $conf_dir   = lookup('archivesspace::conf_dir', String, 'first' ),
