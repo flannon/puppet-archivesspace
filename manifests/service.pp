@@ -23,6 +23,7 @@ class archivesspace::service (
   String $version       = lookup('archivesspace::version', String, 'first'),
 ){
 
+  alert("in service class")
   # install the service script
   if ($facts['os']['family'] == 'RedHat') and ($facts['os']['release']['m    ajor'] == '6') {
 
@@ -44,6 +45,7 @@ class archivesspace::service (
     }
   }
   elsif ($facts['os']['family'] == 'RedHat') and ($facts['os']['release']['m    ajor'] == '7') {
+    alert("Loading archivesspace unit file on $facts['os']['release']['major'")
     file { '/etc/systemd/system/archivesspace.service' :
       ensure  => present,
       owner   => 'root',
@@ -52,6 +54,7 @@ class archivesspace::service (
       content => template('archivesspace/archivesspace.service.erb'),
       require => Package['archivesspace'],
     }
+    alert("Starting service on $facts['os']['release']['major'")
     service { 'archivesspace.service' :
       enable     => true,
       ensure     => running,
