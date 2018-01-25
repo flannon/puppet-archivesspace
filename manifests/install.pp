@@ -29,7 +29,7 @@ class archivesspace::install (
   #String $enable_docs     = lookup('archivesspace::enable_docs', String, 'first'),
   #String $enable_oai      = lookup('archivesspace::enable_oai', String, 'first'),
   String $ensure        = lookup('archivesspace::ensure', String, 'first' ),
-  String $version       = lookup('archivesspace::version', String, 'unique' ),
+  #String $version       = lookup('archivesspace::version', String, 'unique'),
   String $install_dir   = lookup('archivesspace::install_dir', String, 'first' ),
   String $conf_dir   = lookup('archivesspace::conf_dir', String, 'first' ),
   String $conf_file   = lookup('archivesspace::conf_file', String, 'first' ),
