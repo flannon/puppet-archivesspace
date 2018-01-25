@@ -22,14 +22,10 @@ archivesspace::java_heap_max: '-Xmx1024m'
 archivesspace::log_level: '"debug"'
 #archivesspace::version: undef
 archivesspace::version: '2.2.2-1.el7.centos'
-#archivesspace::package_version: "%{version}.el7.centos"
 archivesspace::plugin: undef
 archivesspace::plugin_conf: undef
 archivesspace::plugin_install_dir: "%{install_dir}/plugins"
-#archivesspace::plugin_install_dir: '/opt/archivesspace/plugins'
 archivesspace::plugin_ensure: 'present'
 archivesspace::plugin_prefix: '^AppConfig[:plugins] ='
 archivesspace::plugin_revison: 'master'
 archivesspace::plugin_source: undef
-#archivesspace::indexer_records_per_thread: '15'
-#archivesspace::indexer_thread_count: '2'
