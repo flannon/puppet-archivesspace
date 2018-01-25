@@ -38,7 +38,7 @@ class archivesspace::service (
     }
     service { 'archivesspace' :
       enable     => true,
-      ensure     => running,
+      ensure     => 'running',
       hasstatus  => true,
       provider   => 'init',
       require => [ Package['archivesspace'], File['/etc/systemd/system/archivesspace.service'], File["${install_dir}/.setup-database.complete"]],
