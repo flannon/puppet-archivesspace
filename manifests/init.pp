@@ -45,7 +45,7 @@ class archivesspace (
 
   #include archivesspace::install
   class { archivesspace::install:
-    version =>  $version.
+    version => $version,
   }
   include archivesspace::service
 #Class['archivesspace::install']->
