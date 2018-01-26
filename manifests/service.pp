@@ -55,18 +55,19 @@ class archivesspace::service (
       require => Package['archivesspace'],
     }
     alert('Making the unit file link')
-    file {'/etc/systemd/system/multi-user.target.wants/archivesspace.service':
-      ensure => link,
-      owner  => 'root',
-      group  => 'root',
-      target => '/etc/systemd/system/archivesspace.service',
-    }
+    #file {'/etc/systemd/system/multi-user.target.wants/archivesspace.service':
+    #  ensure => link,
+    #  owner  => 'root',
+    #  group  => 'root',
+    #  target => '/etc/systemd/system/archivesspace.service',
+    #}
     alert("Starting service on $facts['os']['release']['major'")
     service { 'archivesspace.service' :
       enable     => true,
       ensure     => running,
       hasstatus  => true,
-      provider   => 'systemd',
+      #provider   => 'systemd',
+      provider   => 'redhat',
       require => [ Package['archivesspace'], File['/etc/systemd/system/archivesspace.service'], File["${install_dir}/.setup-database.complete"]],
     }
   }
