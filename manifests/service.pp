@@ -23,7 +23,6 @@ class archivesspace::service (
   String $version       = lookup('archivesspace::version', String, 'first'),
 ){
 
-  alert("in service class")
   # install the service script
   if ($::facts['os']['family'] == 'RedHat') and ($::facts['os']['release']['m    ajor'] == '6') {
 
@@ -45,8 +44,7 @@ class archivesspace::service (
     }
   }
   elsif ($::facts['os']['family'] == 'RedHat') and ($::facts['os']['release']['m    ajor'] == '7') {
-    alert("Loading archivesspace unit file on $::facts['os']['release']['major'")
-    alert("Loading archivesspace unit file on $facts['os']['release']['major'")
+    #alert("Loading archivesspace unit file on $facts['os']['release']['major'")
     file { '/etc/systemd/system/archivesspace.service' :
       ensure  => present,
       owner   => 'root',
@@ -55,20 +53,12 @@ class archivesspace::service (
       content => template('archivesspace/archivesspace.service.erb'),
       require => Package['archivesspace'],
     }
-    #alert('Making the unit file link')
-    #file {'/etc/systemd/system/multi-user.target.wants/archivesspace.service':
-    #  ensure => link,
-    #  owner  => 'root',
-    #  group  => 'root',
-    #  target => '/etc/systemd/system/archivesspace.service',
-    #}
     alert("Starting archivesspace service on $facts['os']['release']['major']")
     service { 'archivesspace.service' :
       enable     => true,
       ensure     => running,
       hasstatus  => true,
-      #provider   => 'systemd',
-      #provider   => 'redhat',
+      provider   => 'systemd',
       require => [ Package['archivesspace'], File['/etc/systemd/system/archivesspace.service'], File["${install_dir}/.setup-database.complete"]],
     }
   }
