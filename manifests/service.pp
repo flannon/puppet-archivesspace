@@ -54,6 +54,13 @@ class archivesspace::service (
       content => template('archivesspace/archivesspace.service.erb'),
       require => Package['archivesspace'],
     }
+    alert('Making the unit file link')
+    file {'/etc/systemd/system/multi-user.target.wants/archivesspace.service':
+      ensure => link,
+      owner  => 'root',
+      group  => 'root',
+      target => '/etc/systemd/system/archivesspace.service',
+    }
     alert("Starting service on $facts['os']['release']['major'")
     service { 'archivesspace.service' :
       enable     => true,
