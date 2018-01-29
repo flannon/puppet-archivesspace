@@ -49,7 +49,7 @@ class archivesspace::service (
       ensure  => present,
       owner   => 'root',
       group   => 'root',
-      mode    => '0755',
+      mode    => '0644',
       content => template('archivesspace/archivesspace.service.erb'),
       require => Package['archivesspace'],
     }
