@@ -2,8 +2,8 @@
 archivesspace::position: 'module-common.yaml'
 archivesspace::ensure: 'present'
 archivesspace::install_dir: '/opt/archivesspace'
-#archivesspace::version: '2.2.2-1.el7.centos'
-archivesspace::version: undef
+archivesspace::version: '2.2.2-1.el7.centos'
+#archivesspace::version: undef
 archivesspace::conf_dir: "%{install_dir}/config"
 archivesspace::conf_file: "%{conf_dir}/config.rb"
 archivesspace::user: 'aspace'
