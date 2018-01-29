@@ -2,6 +2,8 @@
 archivesspace::position: 'module-common.yaml'
 archivesspace::ensure: 'present'
 archivesspace::install_dir: '/opt/archivesspace'
+#archivesspace::version: '2.2.2-1.el7.centos'
+archivesspace::version: undef
 archivesspace::conf_dir: "%{install_dir}/config"
 archivesspace::conf_file: "%{conf_dir}/config.rb"
 archivesspace::user: 'aspace'
@@ -20,8 +22,6 @@ archivesspace::enable_oai: "false"
 archivesspace::fsdb: undef
 archivesspace::java_heap_max: '-Xmx1024m'
 archivesspace::log_level: '"debug"'
-#archivesspace::version: '2.2.2-1.el7.centos'
-archivesspace::version: undef
 archivesspace::plugin: undef
 archivesspace::plugin_conf: undef
 archivesspace::plugin_install_dir: "%{install_dir}/plugins"
