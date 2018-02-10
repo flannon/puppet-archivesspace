@@ -44,13 +44,27 @@ class archivesspace (
   ensure_resource('package', 'git', {'ensure' => 'present'})
 
   class { archivesspace::install:
-    user        => $user,
-    version     => $version,
-    install_dir => $install_dir,
-
+    user            => $user,
+    version         => $version,
+    install_dir     => $install_dir,
+    db_url          => $db_url,
+    db_name         => $db_name,
+    db_user         => $db_usr,
+    db_password     => $db_password,
+    log_level       => $log_level,
+    enable_backend  => $enable_backend,
+    enable_frontend => $enable_frontend,
+    enable_public   => $enable_public,
+    enable_solr     => $enable_solr,
+    enable_indexer  => $enable_indexer,
+    enable_docs     => $enable_docs,
+    enable_oai      => $enable_oai,
+    java_heap_max   => $java_heap_max,
   }
   class { archivesspace::service: 
-    install_dir =>  $install_dir,
+    install_dir => $install_dir,
+    user        => $user,
+    group       => $group,
+    install_dir => $install_dir,
   }
-
 }
