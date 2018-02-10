@@ -50,7 +50,7 @@ class archivesspace (
     db_url          => $db_url,
     db_name         => $db_name,
     db_user         => $db_usr,
-    db_password     => $db_password,
+    db_passwd     => $db_passwd,
     log_level       => $log_level,
     enable_backend  => $enable_backend,
     enable_frontend => $enable_frontend,
