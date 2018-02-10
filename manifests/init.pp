@@ -31,7 +31,7 @@ class archivesspace (
   String $db_passwd     = lookup('archivesspace::db_passwd', String, 'first' ),
   String $db_name       = lookup('archivesspace::db_name', String, 'first' ),
   String $db_user       = lookup('archivesspace::db_user', String, 'first' ),
-  String $db_host       = lookup('archivesspace::db_host', String, 'first' ),
+  String $db_url       = lookup('archivesspace::db_url', String, 'first' ),
   String $plugin = lookup('archivesspace::plugin', String, 'first' ),
   String $plugin_conf = lookup('archivesspace::plugin_conf', String, 'first' ),
   String $plugin_install_dir = lookup('archivesspace::plugin_install_dir', String, 'first' ),
@@ -44,7 +44,10 @@ class archivesspace (
   ensure_resource('package', 'git', {'ensure' => 'present'})
 
   class { archivesspace::install:
-    version => $version,
+    user        => $user,
+    version     => $version,
+    install_dir => $install_dir,
+
   }
   class { archivesspace::service: 
     install_dir =>  $install_dir,

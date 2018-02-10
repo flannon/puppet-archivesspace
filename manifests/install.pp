@@ -11,7 +11,7 @@
 # Copyright 2015 Your name here, unless otherwise noted.
 #
 class archivesspace::install (
-  #String $db_host       = lookup('archivesspace::db_host', String, 'first'),
+  #String $db_url       = lookup('archivesspace::db_url', String, 'first'),
   #String $db_name       = lookup('archivesspace::db_name', String, 'first'),
   #String $db_passwd     = lookup('archivesspace::db_passwd', String, 'first'),
   #String $db_user       = lookup('archivesspace::db_user', String, 'first'),
@@ -48,7 +48,7 @@ class archivesspace::install (
   String $db_passwd     = lookup('archivesspace::db_passwd', String, 'first' ),
   String $db_name       = lookup('archivesspace::db_name', String, 'first' ),
   String $db_user       = lookup('archivesspace::db_user', String, 'first' ),
-  String $db_host       = lookup('archivesspace::db_host', String, 'first' ),
+  String $db_url       = lookup('archivesspace::db_url', String, 'first' ),
   String $plugin = lookup('archivesspace::plugin', String, 'first' ),
   String $plugin_conf = lookup('archivesspace::plugin_conf', String, 'first' ),
   String $plugin_install_dir = lookup('archivesspace::plugin_install_dir', String, 'first' ),

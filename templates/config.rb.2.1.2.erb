@@ -18,7 +18,7 @@
 ##
 #AppConfig[:db_url] = proc { AppConfig.demo_db_url }
 #AppConfig[:db_url] = "jdbc:mysql://poly-asdb-0.caa7arvvnl9h.us-east-1.rds.amazonaws.com:3306/asdb?user=aspace&password=letmein#poly&useUnicode=true&characterEncoding=UTF-8"
-AppConfig[:db_url] = "jdbc:mysql://<%= @db_host %>:3306/<%= @db_name %>?user=<%= @db_user %>&password=<%= @db_passwd %>&useUnicode=true&characterEncoding=UTF-8"
+AppConfig[:db_url] = "jdbc:mysql://<%= @db_url %>:3306/<%= @db_name %>?user=<%= @db_user %>&password=<%= @db_passwd %>&useUnicode=true&characterEncoding=UTF-8"
 #
 ## Set the maximum number of database connections used by the application.
 ## Default is derived from the number of indexer threads.

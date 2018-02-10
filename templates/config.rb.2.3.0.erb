@@ -16,7 +16,7 @@
 ## Set your database name and credentials here.  Example:
 ##
 ##  AppConfig[:db_url] = "jdbc:mysql://127.0.0.1:3306/aspace?useUnicode=true&characterEncoding=UTF-8&user=as&password=as123"
-AppConfig[:db_url] = "jdbc:mysql://<%= @db_host %>:3306/<%= @db_name %>?user=<%= @db_user %>&password=<%= @db_passwd %>&useUnicode=true&characterEncoding=UTF-8"
+AppConfig[:db_url] = "jdbc:mysql://<%= @db_url %>:3306/<%= @db_name %>?user=<%= @db_user %>&password=<%= @db_passwd %>&useUnicode=true&characterEncoding=UTF-8"
 ##
 #AppConfig[:db_url] = proc { AppConfig.demo_db_url }
 #

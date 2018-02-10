@@ -9,7 +9,7 @@ archivesspace::conf_file: "%{conf_dir}/config.rb"
 archivesspace::user: 'aspace'
 archivesspace::group: 'aspace'
 archivesspace::db_user: 'aspace'
-archivesspace::db_host: 'localhost'
+archivesspace::db_url: 'localhost'
 archivesspace::db_name: 'asdb'
 archivesspace::db_passwd: 'password'
 archivesspace::enable_backend: "true"
