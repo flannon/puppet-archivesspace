@@ -40,6 +40,8 @@ class archivesspace (
   String $plugin_revision = lookup('archivesspace::plugin_revision', String, 'first' ),
   String $plugin_source = lookup('archivesspace::plugin_source', String, 'first' ),
   String $provider = lookup('archivesspace::provider', String, 'first' ),
+  Boolean $ensure = lookup('archivesspace::ensure', Boolean, 'first' ),
+  Boolean $enable = lookup('archivesspace::enable', Boolean, 'first' ),
 ){
 
   ensure_resource('package', 'git', {'ensure' => 'present'})
