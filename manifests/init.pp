@@ -39,6 +39,7 @@ class archivesspace (
   String $plugin_prefix = lookup('archivesspace::plugin_prefix', String, 'first' ),
   String $plugin_revision = lookup('archivesspace::plugin_revision', String, 'first' ),
   String $plugin_source = lookup('archivesspace::plugin_source', String, 'first' ),
+  String $provider = lookup('archivesspace::provider', String, 'first' ),
 ){
 
   ensure_resource('package', 'git', {'ensure' => 'present'})
@@ -62,6 +63,9 @@ class archivesspace (
     java_heap_max   => $java_heap_max,
   }
   class { archivesspace::service: 
+    provider    => $provider,
+    ensure      => running,
+    enable      => true
     user        => $user,
     group       => $group,
     install_dir => $install_dir,

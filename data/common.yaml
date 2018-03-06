@@ -29,3 +29,4 @@ archivesspace::plugin_ensure: 'present'
 archivesspace::plugin_prefix: '^AppConfig[:plugins] ='
 archivesspace::plugin_revision: 'master'
 archivesspace::plugin_source: undef
+archivesspace::plugin_source: systemd
