@@ -1,6 +1,9 @@
 ---
 archivesspace::position: 'module-common.yaml'
-archivesspace::ensure: 'present'
+#archivesspace::ensure: 'present'
+archivesspace::ensure: running
+archivesspace::enable: true
+archivesspace::provider: 'systemd'
 archivesspace::install_dir: '/opt/archivesspace'
 archivesspace::version: '2.2.2-1.el7.centos'
 #archivesspace::version: undef

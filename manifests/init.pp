@@ -65,9 +65,9 @@ class archivesspace (
     java_heap_max   => $java_heap_max,
   }
   class { archivesspace::service: 
+    ensure      => $ensure,
+    enable      => $enable,
     provider    => $provider,
-    ensure      => running,
-    enable      => true
     user        => $user,
     group       => $group,
     install_dir => $install_dir,
