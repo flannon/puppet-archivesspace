@@ -55,7 +55,7 @@ class archivesspace::install (
   String $plugin_ensure = lookup('archivesspace::plugin_ensure', String, 'first' ),
   String $plugin_prefix = lookup('archivesspace::plugin_prefix', String, 'first' ),
   String $plugin_revision = lookup('archivesspace::plugin_revision', String, 'first' ),
-  String $plugin_source = lookup('archivesspace::plugin_source', String, 'first' ),
+  #String $plugin_source = lookup('archivesspace::plugin_source', String, 'first' ),
 ){
 
   # Create the aspace user
