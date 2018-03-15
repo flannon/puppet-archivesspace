@@ -70,7 +70,7 @@ class archivesspace::install (
   }
 
   # Make sure aspace owns the package
-  file { "$install_dir" :
+  file { $install_dir :
     ensure  => directory,
     owner   => $user,
     group   => $user,

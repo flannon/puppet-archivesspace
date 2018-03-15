@@ -21,6 +21,9 @@ class archivesspace::service (
   String $user          = lookup('archivesspace::user', String, 'first'),
   String $group         = lookup('archivesspace::group', String, 'first'),
   String $version       = lookup('archivesspace::version', String, 'first'),
+  String $provider       = lookup('archivesspace::provider', String, 'first'),
+  Boolean $ensure       = lookup('archivesspace::ensure', Boolean, 'first'),
+  Boolean $enable       = lookup('archivesspace::enable', Boolean, 'first'),
 ){
 
   # install the service script
@@ -36,10 +39,10 @@ class archivesspace::service (
     notify  => File["${install_dir}/archivesspace.sh"],
     }
     service { 'archivesspace' :
-      enable     => true,
-      ensure     => true,
+      enable     => $enable,
+      ensure     => $ensure,
       hasstatus  => true,
-      provider   => 'init',
+      provider   => $provider,
       require => [ Package['archivesspace'], File['/etc/systemd/system/archivesspace.service'], File["${install_dir}/.setup-database.complete"]],
     }
   }
@@ -55,10 +58,10 @@ class archivesspace::service (
     }
     alert("Starting archivesspace service on $facts['os']['release']['major']")
     service { 'archivesspace.service' :
-      enable     => true,
-      ensure     => running,
+      enable     => $enable,
+      ensure     => $ensure,
       hasstatus  => true,
-      provider   => 'systemd',
+      provider   => $provider,
       require => [ Package['archivesspace'], File['/etc/systemd/system/archivesspace.service'], File["${install_dir}/.setup-database.complete"]],
     }
   }

@@ -11,7 +11,10 @@
 # Copyright 2015 Your name here, unless otherwise noted.
 #
 class archivesspace (
-  String $ensure        = lookup('archivesspace:::ensure', String, 'first' ),
+  #String $ensure        = lookup('archivesspace:::ensure', String, 'first' ),
+  String $provider = lookup('archivesspace::provider', String, 'first' ),
+  Boolean $ensure = lookup('archivesspace::ensure', Boolean, 'first' ),
+  Boolean $enable = lookup('archivesspace::enable', Boolean, 'first' ),
   String $version       = lookup('archivesspace::version', String, 'first' ),
   String $install_dir   = lookup('archivesspace::install_dir', String, 'first' ),
   String $conf_dir   = lookup('archivesspace::conf_dir', String, 'first' ),
@@ -62,6 +65,9 @@ class archivesspace (
     java_heap_max   => $java_heap_max,
   }
   class { archivesspace::service: 
+    ensure      => $ensure,
+    enable      => $enable,
+    provider    => $provider,
     user        => $user,
     group       => $group,
     install_dir => $install_dir,
