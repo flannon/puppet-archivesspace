@@ -1,7 +1,7 @@
 ---
 archivesspace::position: 'module-common.yaml'
 #archivesspace::ensure: 'present'
-archivesspace::ensure: running
+archivesspace::ensure: true
 archivesspace::enable: true
 archivesspace::provider: 'systemd'
 archivesspace::install_dir: '/opt/archivesspace'
