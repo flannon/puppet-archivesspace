@@ -9,6 +9,7 @@ archivesspace::version: '2.2.2-1.el7.centos'
 #archivesspace::version: undef
 archivesspace::conf_dir: "%{install_dir}/config"
 archivesspace::conf_file: "%{conf_dir}/config.rb"
+archivesspace::db_host: undef
 archivesspace::user: 'aspace'
 archivesspace::group: 'aspace'
 archivesspace::db_user: 'aspace'
