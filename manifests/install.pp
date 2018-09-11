@@ -81,7 +81,7 @@ class archivesspace::install (
     owner   => $user,
     group   => $user,
     mode    => '0644',
-    content => template("archivesspace/config.rb.${config_version}.erb"),
+    content => template("archivesspace/config.rb.${config_version_major}.erb"),
     require => Package['archivesspace'],
     notify  => File["${install_dir}/archivesspace.sh"],
   }
@@ -91,7 +91,7 @@ class archivesspace::install (
     owner   => $user,
     group   => $user,
     mode    => '0755',
-    content => template("archivesspace/archivesspace.sh.${config_version}.erb"),
+    content => template("archivesspace/archivesspace.sh.${config_version_major}.erb"),
     require => Package['archivesspace'],
     notify  => Exec['scripts/setup-database.sh'],
   }
