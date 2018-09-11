@@ -72,8 +72,8 @@ class archivesspace::install (
   $config_version=regsubst($version, '^([0-9].*)\-(.*)$', '\1')
   $config_version_major=regsubst($version, '^([0-9].?)\-(.*)$', '\1')
 
-  alert("config_rb: $config_version")
-  warn("config_rb: $config_version_major")
+  alert("config_version: $config_version")
+  warning("config_version_major: $config_version_major")
 
   # write the config file
   file { "${install_dir}/config/config.rb" :
